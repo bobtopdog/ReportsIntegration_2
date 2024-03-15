@@ -12,5 +12,5 @@
         <ServerReport ReportServerUrl="http://desktop-sps7f6p/reportserverSSRS" ReportPath="/incidents" />
     </rsweb:ReportViewer>
 
-    <rsweb:ReportViewer ID="ReportViewer2" runat="server"  Width="100%" ShowToolBar="False"></rsweb:ReportViewer>
+    <rsweb:ReportViewer ID="ReportViewer2" runat="server"  Width="100%" ShowToolBar="False" Height="500px"></rsweb:ReportViewer>
 </asp:Content>

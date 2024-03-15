@@ -24,8 +24,9 @@ namespace ReportsIntegration
 
                 DataSet dataset = new DataSet("DataSet1");
                 string filterYear = "2024";
+                string rnID = "8";
 
-                GetReportData(filterYear, ref dataset);
+                GetReportData(filterYear, rnID, ref dataset);
 
                 ReportDataSource dsSalesOrder = new ReportDataSource();
                 dsSalesOrder.Name = "DataSet1";
@@ -37,9 +38,9 @@ namespace ReportsIntegration
             }
         }
 
-        private void GetReportData(string filterYear, ref DataSet dsSalesOrder)
+        private void GetReportData(string filterYear, string rnID, ref DataSet dsSalesOrder)
         {
-            string sqlSalesOrder = "SELECT   tbl_test_chart_3.rowID   ,tbl_test_chart_3.typeOfIncident ,DateName(month,[dateSubmitted]) as [dateSubmitted]   ,tbl_test_chart_3.rnid ,month([dateSubmitted]) as mthOrder FROM   tbl_test_chart_3 WHERE  Year(tbl_test_chart_3.dateSubmitted) = @year";
+            string sqlSalesOrder = "SELECT   tbl_test_chart_3.rowID   ,tbl_test_chart_3.typeOfIncident ,DateName(month,[dateSubmitted]) as [dateSubmitted]   ,tbl_test_chart_3.rnid ,month([dateSubmitted]) as mthOrder FROM   tbl_test_chart_3 WHERE  Year(tbl_test_chart_3.dateSubmitted) = @year AND rnID = @rnID";
 
 
                
@@ -56,6 +57,9 @@ namespace ReportsIntegration
             command.Parameters.Add(
                 new SqlParameter("year",
                 filterYear));
+            command.Parameters.Add(
+                new SqlParameter("rnid",
+                rnID));
 
             SqlDataAdapter salesOrderAdapter = new
                 SqlDataAdapter(command);
